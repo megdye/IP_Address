@@ -15,7 +15,7 @@ namespace IP_Address
         static void Main(string[] args)
         {
             var test = new Program();
-            test.Get_TwoLetterName_From_IP(test.geoParams.GetIPAddress()); // GB
+            //test.Get_TwoLetterName_From_IP(test.geoParams.GetIPAddress()); // GB
             test.Get_TwoLetterName_From_IP("23.221.76.66"); // ID
             test.Get_TwoLetterName_From_IP("1.1.1.999999991"); // Throws Exception
             test.Get_TwoLetterName_From_IP("1.1.1.1"); // AU
@@ -71,11 +71,14 @@ namespace IP_Address
             public RegionInfo Region { get; set; }
         }
 
+
         // Function
         public string Get_TwoLetterName_From_IP(string IP_Add)
         {
+            // create api object
             IPGeolocationAPI api = new IPGeolocationAPI("fab4901e71294eb39ec5e3bc24227440");
 
+            // set IP address
             geoParams.SetIPAddress(IP_Add);
             geoParams.SetFields("geo,time_zone,currency");
 
@@ -83,6 +86,7 @@ namespace IP_Address
             try
             {
                 Geolocation geolocation = api.GetGeolocation(geoParams);
+                
 
                 // checks if server response is 200
                 if (geolocation.GetStatus() == 200)
@@ -90,6 +94,7 @@ namespace IP_Address
                     // in-built method
                     //Console.WriteLine(geolocation.GetCountryCode2());
                     //return geolocation.GetCountryCode2();
+
 
                     // manual method
                     CountryList Countries = new CountryList(false);
