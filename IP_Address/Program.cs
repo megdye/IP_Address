@@ -8,8 +8,10 @@ namespace IP_Address
 {
     public class Program
     {
+        // global variable
         public GeolocationParams geoParams = new GeolocationParams();
 
+        // driver code
         static void Main(string[] args)
         {
             var test = new Program();
@@ -19,6 +21,7 @@ namespace IP_Address
             test.Get_TwoLetterName_From_IP("1.1.1.1"); // AU
         }
 
+        // Manual 2-character Country Code classes
         public class CountryList
         {
             private CultureTypes _AllCultures;
@@ -68,17 +71,27 @@ namespace IP_Address
             public RegionInfo Region { get; set; }
         }
 
+        // Function
         public string Get_TwoLetterName_From_IP(string IP_Add)
         {
             IPGeolocationAPI api = new IPGeolocationAPI("fab4901e71294eb39ec5e3bc24227440");
 
             geoParams.SetIPAddress(IP_Add);
             geoParams.SetFields("geo,time_zone,currency");
+
+            // Exception handling 
             try
             {
                 Geolocation geolocation = api.GetGeolocation(geoParams);
+
+                // checks if server response is 200
                 if (geolocation.GetStatus() == 200)
                 {
+                    // in-built method
+                    //Console.WriteLine(geolocation.GetCountryCode2());
+                    //return geolocation.GetCountryCode2();
+
+                    // manual method
                     CountryList Countries = new CountryList(false);
                     string TwoLettersName = Countries.GetTwoLettersName(geolocation.GetCountryName(), true);
                     Console.WriteLine(TwoLettersName);
@@ -90,12 +103,13 @@ namespace IP_Address
                     return geolocation.GetMessage();
                 }
             }
+            // handle exceptions if geolocation variable cannot be created
             catch (System.Net.WebException e)
             {
                 String ex = String.Format("There has been an issue - please read below:\n{0}", e);
                 Console.WriteLine(ex);
                 return ex;
-            }
+            } 
         }
     }
 }
