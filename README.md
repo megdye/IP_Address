@@ -11,4 +11,4 @@ There are two ways that the code can be used:
 - Method that uses the API's in-built method
   - Calls the method GetCountryCode2() that the API provides.
   
-The program can also either be used by parsing a string as an argument programmatically, via dynamic user input, or by using the user's IP address via an in-built method.
+The program can also either be used by parsing a string as an argument programmatically or by using the user's IP address via an in-built method.
