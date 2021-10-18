@@ -1,6 +1,5 @@
 # IP_Address
-
-My task was "Write a function in C# that takes an IP address and returns a two-character country code depending on the geo-location of the IP".
+Aim: "Write a function in C# that takes an IP address and returns a two-character country code depending on the geo-location of the IP".
 <br>
 This repository uses this API: https://ipgeolocation.io/documentation/ip-geolocation-api-c-sharp-dotnet-sdk.html
 <br>
